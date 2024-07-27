@@ -1,0 +1,48 @@
+.botConfig {
+    display: flex;
+    width: 50%;
+    margin-left: 250px;
+}
+
+.settings-form {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+}
+
+div {
+    padding-top: 10px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input,
+textarea {
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #61dafb;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #52b7d3;
+}
+
+@media (max-width: 768px) {
+    .botConfig {
+        margin-left: 0px;
+    }
+}

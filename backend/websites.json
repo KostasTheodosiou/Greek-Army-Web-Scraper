@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Army.gr",
+        "url": "http://army.gr/category/ekdiloseis",
+        "ancestorTerm": ".category-ekdiloseis",
+        "searchTerm": ".elementor-heading-title",
+        "dateTerm": ".elementor-post-info__item--type-date",
+        "linkprefix": ""
+    },
+    {
+        "name": "mod.mil",
+        "url": "https://www.mod.mil.gr/category/anakoinoseis-typoy/",
+        "ancestorTerm": ".elementor-post__text",
+        "searchTerm": ".elementor-post__title",
+        "dateTerm": ".elementor-post-date",
+        "linkprefix": "https://www.mod.mil.gr"
+    },
+    {
+        "name": "Geetha",
+        "url": "https://geetha.mil.gr/category/drastiriotites/",
+        "ancestorTerm": ".td-module-meta-info",
+        "searchTerm": ".td-module-thumb",
+        "dateTerm": ".td-module-meta-info",
+        "linkprefix": ""
+    },
+    {
+        "name": "kranosgr",
+        "url": "https://www.kranosgr.com/",
+        "ancestorTerm": ".td-module-meta-info",
+        "searchTerm": ".td-module-title",
+        "dateTerm": ".td-editor-date",
+        "linkprefix": ""
+    },
+    {
+        "name": "spartakos",
+        "url": "https://diktiospartakos.blogspot.com/",
+        "ancestorTerm": ".post-outer",
+        "searchTerm": ".post-title",
+        "dateTerm": ".timestamp-link",
+        "linkprefix": ""
+    },
+    {
+        "name": "armyvoice",
+        "url": "https://armyvoice.gr/",
+        "ancestorTerm": ".td_module_3",
+        "searchTerm": ".entry-title",
+        "dateTerm": ".td-post-date",
+        "linkprefix": ""
+    },
+    {
+        "name": "Militaire",
+        "url": "https://www.militaire.gr/oles-oi-eidiseis/",
+        "ancestorTerm": ".break-words",
+        "searchTerm": ".break-words",
+        "dateTerm": ".text-[13px]",
+        "linkprefix": ""
+    },
+    {
+        "name": "defencepoint",
+        "url": "https://www.defence-point.gr/news/",
+        "ancestorTerm": "",
+        "searchTerm": ".title",
+        "dateTerm": "",
+        "linkprefix": ""
+    },
+    {
+        "name": "onalert",
+        "url": "https://www.onalert.gr/?s",
+        "ancestorTerm": "",
+        "searchTerm": ".jeg_post_title",
+        "dateTerm": "",
+        "linkprefix": ""
+    },
+    {
+        "name": "enoplos",
+        "url": "https://www.enoplos.gr/search?max-results=15",
+        "ancestorTerm": "",
+        "searchTerm": ".entry-title",
+        "dateTerm": "",
+        "linkprefix": ""
+    }
+]

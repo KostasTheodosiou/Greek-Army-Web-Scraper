@@ -1,0 +1,133 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styles */
+.navbar {
+    background: rgb(19, 19, 32);
+    height: 100vh;
+    width: 250px;
+    float: left;
+    position: fixed;
+    top: 0;
+    padding: 2rem 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-right: 2px solid #333;
+}
+
+.navbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.logo-img {
+    width: 40px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 10px; /* Space between image and text */
+}
+
+.logo-text {
+    font-weight: bold;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Customize font family */
+}
+
+.navbar-logo:hover {
+    color: #ffde03;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+    align-items: center;
+}
+
+.navbar-item {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.navbar-link {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+    width: 100%;
+    display: block;
+}
+
+.navbar-link::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 25%;
+    background-color: #ffde03;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-link:hover::before {
+    visibility: visible;
+    width: 50%;
+}
+
+.navbar-link:hover {
+    color: #ffde03;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        width: 100%;
+        height: auto;
+        position: static;
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-item {
+        margin: 0;
+        width: 100%;
+        border-right: 2px solid #333;
+    }
+
+    .navbar-link {
+        padding: 1rem;
+    }
+}

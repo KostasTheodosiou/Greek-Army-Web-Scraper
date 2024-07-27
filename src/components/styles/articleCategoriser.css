@@ -1,0 +1,60 @@
+.article-categoriser {
+    font-family: Arial, sans-serif;
+    margin-left: 250px;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-content {
+    margin-left: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-grid {
+    position: fixed;
+    margin-left: 430px;
+    width: 60%;
+    height: 600px;
+    padding: 10px;
+}
+
+.category-column {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 30%;
+}
+
+.entry {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.entry-form {
+    width: 30%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #333;
+    z-index: 10;
+}
+
+.entrybox {
+    width: 70%;
+    height: 40px;
+    word-wrap: break-word;
+}
+
+.entry-list {
+    width: 400px;
+}
+
+.to-categorize {
+    width: 400px;
+}
