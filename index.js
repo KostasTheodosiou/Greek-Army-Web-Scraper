@@ -17,7 +17,7 @@ function createWindow() {
   });
 
   // Load the main HTTPS URL
-  mainWindow.loadURL('https://localhost:3000');
+  mainWindow.loadURL('http://localhost:5000');
 
   mainWindow.on('minimize', function (event) {
     event.preventDefault();
