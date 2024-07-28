@@ -4,8 +4,10 @@
 /node_modules
 /backend/signalBot
 /backend/ArticlesLog
+/backend/build
 /.pnp
 .pnp.js
+
 
 # testing
 /coverage
