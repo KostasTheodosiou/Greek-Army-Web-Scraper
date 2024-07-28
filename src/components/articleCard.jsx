@@ -26,7 +26,7 @@ const ArticleCard = ({ article }) => {
         console.log(`Sending: ${article.title}`);
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/SendSignalMessage",
+                "/api/SendSignalMessage",
                 {
                     params: {
                         article: article,

@@ -41,7 +41,7 @@ const Articles = () => {
         const fetchAllArticles = async () => {
             for (const i in ArticleNames) {
                 const data = await fetchArticles(
-                    "http://192.168.1.12:5000/api/Articles",
+                    "/api/Articles",
                     ArticleNames[i] // Axios automatically serializes the array
                 );
                 //console.log(data);

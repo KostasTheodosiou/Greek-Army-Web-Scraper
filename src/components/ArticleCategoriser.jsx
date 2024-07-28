@@ -22,7 +22,7 @@ function ArticleCategoriser() {
     useEffect(() => {
         const fetchNewArticles = async () => {
             const data = await fetchArticles(
-                "http://192.168.1.12:5000/api/newArticles"
+                "/api/newArticles"
             );
             setEntries(data);
         };
