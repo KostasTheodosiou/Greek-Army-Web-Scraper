@@ -4,7 +4,6 @@
 /node_modules
 /backend/signalBot
 /backend/ArticlesLog
-/backend/build
 /.pnp
 .pnp.js
 
@@ -14,6 +13,8 @@
 
 # production
 /build
+/backend/build
+
 
 # misc
 .DS_Store
