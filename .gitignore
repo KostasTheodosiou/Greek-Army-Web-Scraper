@@ -6,7 +6,7 @@
 /backend/ArticlesLog
 /.pnp
 .pnp.js
-
+/out
 
 # testing
 /coverage

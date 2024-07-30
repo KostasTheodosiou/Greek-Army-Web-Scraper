@@ -35,7 +35,7 @@ const configFilePath = path.join(__dirname, "config.json");
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "..", "build")));
 
 const server = new WebSocket.Server({ port: SOCKETPORT });
 
@@ -106,13 +106,9 @@ app.post("/api/UpdateEntry", async (req, res) => {
     }
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
 app.get("/*", (req, res) => {
-    //console.log("Pinged");
-    res.sendFile(path.join(__dirname, "build", "index.html"));
+    console.log("Pinged");
+    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
 const startUp = async () => {
