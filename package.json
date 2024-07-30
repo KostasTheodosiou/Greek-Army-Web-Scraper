@@ -2,9 +2,8 @@
     "name": "denewsifier",
     "version": "0.1.0",
     "private": true,
-    "main": "index.js",
-    "proxy": "http://192.168.1.2:5000",
-    "homepage": "http://192.168.1.2/",
+    "proxy": "http://192.168.1.12:5000",
+    "homepage": "http://192.168.1.12/",
     "dependencies": {
         "@hello-pangea/dnd": "^16.6.0",
         "@testing-library/jest-dom": "^5.17.0",
