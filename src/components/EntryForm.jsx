@@ -8,7 +8,7 @@ function EntryForm({ addEntry, fetchNewArticles }) {
     async function addAnEntry(article) {
         try {
             const response = await axios.get(
-                "http://192.168.1.12:5000/api/AddEntry",
+                "/api/AddEntry",
                 {
                     params: {
                         title: article.title,

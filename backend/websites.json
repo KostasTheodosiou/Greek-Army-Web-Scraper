@@ -78,5 +78,29 @@
         "searchTerm": ".entry-title",
         "dateTerm": "",
         "linkprefix": ""
+    },
+    {
+        "name": "staratalogia",
+        "url": "https://www.staratalogia.gr/search?&max-results=5",
+        "ancestorTerm": ".post-info",
+        "searchTerm": ".post-title",
+        "dateTerm": ".post-date",
+        "linkprefix": ""
+    },
+    {
+        "name": "flight",
+        "url": "https://flight.com.gr/?s=",
+        "ancestorTerm": ".item-details",
+        "searchTerm": ".entry-title",
+        "dateTerm": ".entry-date",
+        "linkprefix": ""
+    },
+    {
+        "name": "altgr",
+        "url": "https://www.alt.gr/category/epikairotita/",
+        "ancestorTerm": ".entry-header",
+        "searchTerm": ".entry-title",
+        "dateTerm": ".details",
+        "linkprefix": ""
     }
 ]

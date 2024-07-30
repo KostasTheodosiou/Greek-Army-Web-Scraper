@@ -11,11 +11,11 @@ const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
                     <h3 className="article-title">{article.title}</h3>
                     <a
                         className="article-link"
-                        href={article.link}
+                        href={encodeURI(article.link)}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        {article.link}
+                        {encodeURI(article.link)}
                     </a>
                     <button
                         className="send-button"

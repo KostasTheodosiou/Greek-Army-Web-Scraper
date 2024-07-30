@@ -20,7 +20,7 @@ function NewsFeed() {
     const intervalRef = useRef(null);
 
     const fetchNewArticles = async () => {
-        console.log("fetching articles At:", new Date().toLocaleTimeString());
+        //console.log("fetching articles At:", new Date().toLocaleTimeString());
 
         const data = await fetchArticles("/api/newArticles");
         const revdata = data.reverse();

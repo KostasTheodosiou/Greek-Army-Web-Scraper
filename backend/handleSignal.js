@@ -15,7 +15,7 @@ async function sendAutoSignalMessage(message) {
         method: "send",
         id: "1",
         params: {
-            groupId: "sn57HlI2WphS3pkh8utmt4KC/OCqtXOBX9oVrqWkhkU=",
+            groupId: "FNMQpWnKwigc2z8ILYht7S+TeC2zl+6gQSPGuA2clJg=",
             message: message,
         },
     };
@@ -76,7 +76,7 @@ async function sendSignalMessage(message) {
         id: "1",
         params: {
             groupId: "sn57HlI2WphS3pkh8utmt4KC/OCqtXOBX9oVrqWkhkU=",
-            message: message.title + "\n\n" + message.link,
+            message: message.title + "\n\n" + encodeURI(message.link),
         },
     };
 

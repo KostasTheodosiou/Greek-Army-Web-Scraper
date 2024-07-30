@@ -29,7 +29,7 @@ const LinkSignalCli = () => {
         }
     };
 
-    const socket = new WebSocket("ws://192.168.1.12:5001");
+    const socket = new WebSocket("ws://localhost:5001");
 
     socket.onopen = () => {
         console.log("Connected to the server");

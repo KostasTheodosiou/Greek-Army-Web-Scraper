@@ -26,7 +26,7 @@ const ArticleCard = ({ article }) => {
         console.log(`Sending: ${article.title}`);
         try {
             const response = await axios.get(
-                "http://localhost:5000/api/SendSignalMessage",
+                "/api/SendSignalMessage",
                 {
                     params: {
                         article: article,
@@ -43,7 +43,7 @@ const ArticleCard = ({ article }) => {
     const copyArticle = async (article) => {
         try {
             await navigator.clipboard.writeText(
-                article.title + "\n\n" + article.link
+                article.title + "\n\n" + encodeURI(article.link)    
             );
             console.log("Text copied to clipboard");
         } catch (err) {
@@ -77,11 +77,11 @@ const ArticleCard = ({ article }) => {
             </h3>
             <a
                 className={!checked ? "article-link" : "inactive-link"}
-                href={article.link}
+                href={encodeURI(article.link)}
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                {article.link}
+                {encodeURI(article.link)}
             </a>
             <button
                 className="send-button"

@@ -111,8 +111,8 @@ app.post("/api/UpdateEntry", async (req, res) => {
 // });
 
 app.get("/*", (req, res) => {
-    console.log("Pinged");
-    res.sendFile(path.join(__dirname, "../build", "index.html"));
+    //console.log("Pinged");
+    res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const startUp = async () => {
