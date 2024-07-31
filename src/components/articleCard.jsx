@@ -26,6 +26,8 @@ const convertDateToGreek = (dateString) => {
 
 const ArticleCard = ({ article }) => {
     const [checked, setChecked] = useState(false);
+    // const [isEditing, setIsEditing] = useState(false);
+    // const [editedTitle, setEditedTitle] = useState(article.title);
 
     useEffect(() => {
         setChecked(article.tags?.includes("Read") ?? false);
@@ -90,6 +92,34 @@ const ArticleCard = ({ article }) => {
             return [{ id: articleID }];
         }
     }
+
+    // const handleEditClick = () => {
+    //     setIsEditing(true);
+    // };
+
+    // const handleSaveClick = async () => {
+    //     setIsEditing(false);
+    //     await updateArticleTitle(article.id, editedTitle);
+    // };
+
+    // const handleInputChange = (e) => {
+    //     setEditedTitle(e.target.value);
+    // };
+
+    // const updateArticleTitle = async (articleID, newTitle) => {
+    //     try {
+    //         const response = await axios.post(
+    //             "/api/UpdateEntry",
+    //             {
+    //                 id: articleID,
+    //                 updates: { title: newTitle },
+    //             }
+    //         );
+    //         console.log(response);
+    //     } catch (error) {
+    //         console.error("Error updating article title:", error);
+    //     }
+    // };
 
     return (
         <>

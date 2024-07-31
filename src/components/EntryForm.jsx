@@ -5,7 +5,7 @@ import axios from "axios";
 function EntryForm({ fetchNewArticles }) {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
-  const [minimized, setMinimized] = useState(false);
+  const [minimized, setMinimized] = useState(true);
   const formRef = useRef(null);
   const handleRef = useRef(null);
 
