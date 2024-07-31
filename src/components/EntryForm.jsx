@@ -1,121 +1,141 @@
-import React, { useState,  useRef, useEffect } from "react";
 import "./styles/EntryForm.css";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-function EntryForm({ addEntry, fetchNewArticles }) {
-    const [title, setTitle] = useState("");
-    const [link, setLink] = useState("");
-    const formRef = useRef(null);
+function EntryForm({ fetchNewArticles }) {
+  const [title, setTitle] = useState("");
+  const [link, setLink] = useState("");
+  const [minimized, setMinimized] = useState(false);
+  const formRef = useRef(null);
+  const handleRef = useRef(null);
 
-    async function addAnEntry(article) {
-        try {
-            const response = await axios.get("/api/AddEntry", {
-                params: {
-                    title: article.title,
-                    link: article.link,
-                },
-            });
-            console.log("GET request running");
-            return response.data;
-        } catch (error) {
-            console.error("Error fetching articles:", error);
-            return [{ title: "", link: "" }];
-        }
+  async function addAnEntry(article) {
+    try {
+      const response = await axios.get("/api/AddEntry", {
+        params: {
+          title: article.title,
+          link: article.link,
+        },
+      });
+      console.log("GET request running");
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      return [{ title: "", link: "" }];
     }
-    useEffect(() => {
-        const formElement = formRef.current;
-        let offsetX, offsetY;
+  }
 
-        const handleMouseDown = (e) => {
-            offsetX = e.clientX - formElement.getBoundingClientRect().left;
-            offsetY = e.clientY - formElement.getBoundingClientRect().top;
-            document.addEventListener("mousemove", handleMouseMove);
-            document.addEventListener("mouseup", handleMouseUp);
-        };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (title && link) {
+      addAnEntry({ title, link });
+      setTitle("");
+      setLink("");
+    }
+  };
 
-        const handleMouseMove = (e) => {
-            formElement.style.left = `${e.clientX - offsetX}px`;
-            formElement.style.top = `${e.clientY - offsetY}px`;
-        };
+  const toggleMinimize = () => {
+    setMinimized(!minimized);
+  };
 
-        const handleMouseUp = () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseup", handleMouseUp);
-        };
+  useEffect(() => {
+    const formElement = formRef.current;
+    const handleElement = handleRef.current;
 
-        const handle = formElement.querySelector(".handle");
-        handle.addEventListener("mousedown", handleMouseDown);
+    if (!formElement || !handleElement) return;
 
-        return () => {
-            handle.removeEventListener("mousedown", handleMouseDown);
-        };
-    }, []);
+    let offsetX, offsetY;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (title && link) {
-            addAnEntry({ title, link });
-            setTitle("");
-            setLink("");
-        }
+    const handleMouseDown = (e) => {
+      offsetX = e.clientX - formElement.getBoundingClientRect().left;
+      offsetY = e.clientY - formElement.getBoundingClientRect().top;
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     };
 
-    useEffect(() => {
-        const formElement = formRef.current;
-        let offsetX, offsetY;
+    const handleMouseMove = (e) => {
+      const formRect = formElement.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
 
-        const handleMouseDown = (e) => {
-            offsetX = e.clientX - formElement.getBoundingClientRect().left;
-            offsetY = e.clientY - formElement.getBoundingClientRect().top;
-            document.addEventListener("mousemove", handleMouseMove);
-            document.addEventListener("mouseup", handleMouseUp);
-        };
+      let newLeft = e.clientX - offsetX;
+      let newTop = e.clientY - offsetY;
 
-        const handleMouseMove = (e) => {
-            formElement.style.left = `${e.clientX - offsetX}px`;
-            formElement.style.top = `${e.clientY - offsetY}px`;
-        };
+      // Ensure the form doesn't go out of the viewport boundaries
+      if (newLeft < 0) newLeft = 0;
+      if (newTop < 0) newTop = 0;
+      if (newLeft + formRect.width > viewportWidth)
+        newLeft = viewportWidth - formRect.width;
+      if (newTop + formRect.height > viewportHeight)
+        newTop = viewportHeight - formRect.height;
 
-        const handleMouseUp = () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseup", handleMouseUp);
-        };
+      formElement.style.left = `${newLeft}px`;
+      formElement.style.top = `${newTop}px`;
+    };
 
-        const handle = formElement.querySelector(".handle");
-        handle.addEventListener("mousedown", handleMouseDown);
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
 
-        return () => {
-            handle.removeEventListener("mousedown", handleMouseDown);
-        };
-    }, []);
+    handleElement.addEventListener("mousedown", handleMouseDown);
 
-    return (
-        <form ref={formRef} onSubmit={handleSubmit} className="entry-form">
-            <div className="handle">..........</div>
+    return () => {
+      handleElement.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, [minimized]);
 
+  useEffect(() => {
+    if (minimized) {
+      const formElement = formRef.current;
+      formElement.style.left = "auto";
+      formElement.style.top = "auto";
+      formElement.style.right = "10px";
+      formElement.style.bottom = "10px";
+    }
+  }, [minimized]);
+
+  return (
+    <div ref={formRef} className={`entry-form ${minimized ? "minimized" : ""}`}>
+      {minimized ? (
+        <button className= {`minimize-button-${minimized ? "minimized" : ""}`} onClick={toggleMinimize}>
+          +
+        </button>
+      ) : (
+        <>
+          <button ref={handleRef} className="handle">
+            .....
+          </button>
+          <button className="minimize-button" onClick={toggleMinimize}>
+            -
+          </button>
+          <form onSubmit={handleSubmit}>
             <div>
-                <label>Title:</label>
-                <input
-                    className="entrybox"
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
+              <label>Title:</label>
+              <input
+                className="entrybox"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
             </div>
             <div>
-                <label>Link:</label>
-                <input
-                    className="entrybox"
-                    type="url"
-                    value={link}
-                    onChange={(e) => setLink(e.target.value)}
-                    required
-                />
+              <label>Link:</label>
+              <input
+                className="entrybox"
+                type="url"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+                required
+              />
             </div>
             <button type="submit">Add Entry</button>
-        </form>
-    );
+          </form>
+        </>
+      )}
+    </div>
+  );
 }
 
 export default EntryForm;

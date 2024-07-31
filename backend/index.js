@@ -85,8 +85,9 @@ app.get("/api/sendSignalMessage", async (req, res) => {
 });
 
 app.get("/api/AddEntry", async (req, res) => {
-    const article = req.query;
-    AddArticle(db, article, "Current");
+    const {title, link } = req.query;
+    const article = { title, link, name:"Other", date: ""};
+    AddArticle(db, article, ["Current"]);
     res.json({ Added: true });
 });
 
@@ -107,7 +108,6 @@ app.post("/api/UpdateEntry", async (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-    console.log("Pinged");
     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 

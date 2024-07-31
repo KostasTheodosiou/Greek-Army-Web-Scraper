@@ -3,6 +3,27 @@ import axios from "axios";
 import "./styles/articleCard.css";
 import CheckBox from "./CheckBox";
 
+const convertDateToGreek = (dateString) => {
+    if(dateString == null){
+        return "";
+    } 
+    const monthsGreek = [
+        "Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
+        "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου"
+    ];
+
+    // Split the date and time parts
+    const [datePart, timePart] = dateString.split(" ");
+    const [year, month, day] = datePart.split("-");
+
+    // Convert the month to Greek
+    const monthGreek = monthsGreek[parseInt(month, 10) - 1];
+
+    // Return the formatted string
+    return `${day} ${monthGreek} ${year} ${timePart}`;
+};
+
+
 const ArticleCard = ({ article }) => {
     const [checked, setChecked] = useState(false);
 
@@ -23,7 +44,7 @@ const ArticleCard = ({ article }) => {
     }
 
     const sendArticle = async (article) => {
-        console.log(`Sending: ${article.title}`);
+        //console.log(`Sending: ${article.title}`);
         try {
             const response = await axios.get(
                 "/api/SendSignalMessage",
@@ -72,6 +93,7 @@ const ArticleCard = ({ article }) => {
 
     return (
         <>
+            <div className="dateAdded">Βρέθηκε: {convertDateToGreek(article.dateAdded)}</div>
             <div className="date">{article.date}</div>
             <h3 className={!checked ? "article-title" : "inactive-title"}>
                 {article.title}

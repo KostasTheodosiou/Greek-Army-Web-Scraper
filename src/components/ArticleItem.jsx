@@ -3,9 +3,24 @@ import "./styles/articleItem.css";
 import PropTypes from "prop-types";
 
 const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
+    if (!articles.length) {
+        return <p>Δεν υπάρχουν Άρθρα.</p>;
+    }
+
+    const sortArticles = (articles) => {
+        const currentArticles = articles.filter(article => article.tags.includes("Current"));
+        const logArticles = articles.filter(article => article.tags.includes("Log"));
+        currentArticles.sort((a, b) => b.id - a.id);
+        logArticles.sort((a, b) => a.id - b.id);    
+        return [...currentArticles, ...logArticles];
+    };
+
+    const sortedArticles = sortArticles(articles);
+    
+
     return (
         <div className="articles-container">
-            {articles.map((article, index) => (
+            {sortedArticles.map((article, index) => (
                 <div key={index} className="article-card">
                     <h3 className="date">{article.date}</h3>
                     <h3 className="article-title">{article.title}</h3>

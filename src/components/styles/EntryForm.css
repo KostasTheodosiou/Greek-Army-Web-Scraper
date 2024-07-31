@@ -6,23 +6,32 @@
 }
 
 .entry-form {
-    width: 30%; /* Increased width for the entire form */
-    position: absolute; /* Absolute positioning for free movement */
-    height: 240px;
+    width: 40%; /* Increased width for the entire form */
+    position: fixed; /* Absolute positioning for free movement */
     right: 0;
-    padding: 7px;
-    padding-top: 30px;
     bottom: 0;
+    height: 250px;
     border: 1px solid #333;
     border-radius: 8px;
-    margin: 25px;
+    padding: 5px;
+    padding-top: 45px;    
+    margin: 10px;
     background-color: #333;
     z-index: 10;
-    transform: scale(1.1); /* Scaling the entire form */
+}
+
+.entry-form.minimized {
+    width: 110px;
+    height: 80px;
+    transform: none;
+    bottom: 10px;
+    left: auto;
+    right: 10px;
+    padding: 0;
+    margin: 0;
 }
 
 .entrybox {
-
     width: 80%; /* Increased width for entry boxes */
     height: 50px; /* Increased height for entry boxes */
     word-wrap: break-word;
@@ -31,17 +40,61 @@
 }
 
 .handle {
+    background-color: #555;
     position: absolute;
-    width: 60px;
-    right: 5px;
-    top: 5px;
-    background-color: #666;
-    padding: 2px; /* Increased padding for the handle */
+    top: 0;
+    right: 75px;
+    padding: 10px; /* Increased padding for the handle */
+    width: 70px;
+    height: 30px;
     cursor: grab;
     color: white;
     text-align: center;
+    margin-bottom: 15px; /* Increased margin for better spacing */
     border-radius: 4px;
-    margin-bottom: 5px;
     user-select: none; /* Prevent text selection */
     font-size: 18px; /* Increased font size */
 }
+
+.handle:hover {
+    background-color: #777;
+}
+
+.minimize-button {
+    background-color: #555;
+    position: absolute;
+    height: 30px;
+    top: 0;
+    right: 0px;
+    color: white;
+    width: 70px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.minimize-button:hover {
+    background-color: #777;
+}
+
+.minimize-button-minimized {
+    background-color: #555;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    color: white;
+    width: 90px;
+    height: 60px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.minimize-button-minimized:hover {
+    background-color: #777;
+}
+

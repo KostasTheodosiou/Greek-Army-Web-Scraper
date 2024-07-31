@@ -31,7 +31,8 @@ db.serialize(() => {
         name TEXT,
         date TEXT,
         tags TEXT NOT NULL,
-        category TEXT
+        category TEXT,
+        dateAdded TEXT DEFAULT (datetime('now'))
     )`);
 });
 
@@ -51,11 +52,7 @@ function AddArticle(db, article, tags) {
         const { title, link, name, date } = article;
         const category = ""; // Default value for category
 
-        if (
-            typeof link === "undefined" ||
-            link === "" ||
-            link === "undefined"
-        ) {
+        if (typeof link === "undefined" || link === "" || link === "undefined") {
             return reject();
         }
 
@@ -76,17 +73,14 @@ function AddArticle(db, article, tags) {
             const filteredTags = tags.filter((tag) => validTags.includes(tag));
             const tagsJSON = JSON.stringify(filteredTags);
 
-            const query = `INSERT INTO articles (title, link, name, date, tags, category) VALUES (?, ?, ?, ?, ?, ?)`;
+            const query = `INSERT INTO articles (title, link, name, date, tags, category, dateAdded) VALUES (?, ?, ?, ?, ?, ?, datetime('now'))`;
 
             db.run(
                 query,
                 [title, link, name, activeDate, tagsJSON, category],
                 function (err) {
                     if (err) {
-                        console.error(
-                            "Database AddArticle error:",
-                            err.message
-                        );
+                        console.error("Database AddArticle error:", err.message);
                         return reject(err);
                     }
                     // Resolve with the ID of the inserted row
@@ -98,6 +92,7 @@ function AddArticle(db, article, tags) {
                         date: activeDate,
                         tags: filteredTags,
                         category,
+                        dateAdded: new Date().toISOString() // Current date and time in ISO format
                     });
                     console.log({
                         id: this.lastID,
@@ -107,12 +102,14 @@ function AddArticle(db, article, tags) {
                         date: activeDate,
                         tags: filteredTags,
                         category,
+                        dateAdded: new Date().toISOString() // Current date and time in ISO format
                     });
                 }
             );
         });
     });
 }
+
 
 /**
  * Retrieves all articles by a specific name.
