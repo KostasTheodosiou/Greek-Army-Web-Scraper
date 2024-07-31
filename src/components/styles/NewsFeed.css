@@ -1,6 +1,14 @@
 .Feed {
     margin-left: 250px;
+    padding-left: 10px;
 }
+
+@media (max-width: 768px) {
+    .Feed {
+      margin-left: 10px;
+      margin-top: 250px;
+    }
+  }
 
 .Feed-entry-list {
     padding-top: 0%;

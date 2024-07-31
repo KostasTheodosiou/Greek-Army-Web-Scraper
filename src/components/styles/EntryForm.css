@@ -1,0 +1,47 @@
+.entry {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.entry-form {
+    width: 30%; /* Increased width for the entire form */
+    position: absolute; /* Absolute positioning for free movement */
+    height: 240px;
+    right: 0;
+    padding: 7px;
+    padding-top: 30px;
+    bottom: 0;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 25px;
+    background-color: #333;
+    z-index: 10;
+    transform: scale(1.1); /* Scaling the entire form */
+}
+
+.entrybox {
+
+    width: 80%; /* Increased width for entry boxes */
+    height: 50px; /* Increased height for entry boxes */
+    word-wrap: break-word;
+    font-size: 16px; /* Increased font size for better readability */
+    padding: 8px; /* Added padding for better spacing */
+}
+
+.handle {
+    position: absolute;
+    width: 60px;
+    right: 5px;
+    top: 5px;
+    background-color: #666;
+    padding: 2px; /* Increased padding for the handle */
+    cursor: grab;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    user-select: none; /* Prevent text selection */
+    font-size: 18px; /* Increased font size */
+}

@@ -136,43 +136,43 @@ const Articles = () => {
     return (
         <div>
             <h1>Άρθρα Army.gr</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={armyArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα ΥΕΘΑ</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={modArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα ΓΕΕΘΑ</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={geethaArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα kranosgr</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={kranosArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα Spartakos</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={spartakosArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα armyvoice</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={armyvoiceArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα Militaire</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={MilitaireArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
@@ -184,25 +184,25 @@ const Articles = () => {
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα OnAlert</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={onalertArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα enoplos</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={enoplosArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα staratalogia</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={staratalogiaArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}
             />
             <h1>Άρθρα Flight</h1>
-            <ArticleItem
+            <ArticleItem 
                 articles={flightArticles}
                 sendArticle={sendArticle}
                 copyArticle={copyArticle}

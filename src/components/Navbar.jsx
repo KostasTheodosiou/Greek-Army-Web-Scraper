@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { ResizableBox } from "react-resizable";
 import { Link } from "react-router-dom";
 import "./styles/Navbar.css";
 
 const Navbar = () => {
+    const [width, setWidth] = useState(250);
+
     return (
+        <ResizableBox
+        className="sidebar"
+        width={width}
+        height={Infinity}
+        axis="x"
+        minConstraints={[100, Infinity]} // Minimum width
+        maxConstraints={[500, Infinity]} // Maximum width
+        onResizeStop={(e, data) => setWidth(data.size.width)}
+      >
         <nav className="navbar">
             <div className="navbar-container">
                 <ul className="navbar-menu">
@@ -30,6 +42,8 @@ const Navbar = () => {
                 </ul>
             </div>
         </nav>
+        </ResizableBox>
+
     );
 };
 
