@@ -55,7 +55,7 @@ const ArticleCard = ({ article }) => {
         try {
             console.log(articleID);
             const response = await axios.post(
-                "http://192.168.1.12:5000/api/UpdateEntry",
+                "/api/UpdateEntry",
                 {
                     params: {
                         id: articleID, // Axios automatically serializes the array
@@ -63,6 +63,7 @@ const ArticleCard = ({ article }) => {
                     },
                 }
             );
+            console.log(response);
         } catch (error) {
             console.error("Updating Article:", error);
             return [{ id: articleID }];
