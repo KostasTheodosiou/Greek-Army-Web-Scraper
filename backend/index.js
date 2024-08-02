@@ -3,7 +3,6 @@ const { scrapeArticles, loadWebsites } = require("./utils.js");
 
 const {
     handleSignalOps,
-    sendAutoSignalMessage,
     sendSignalMessage,
 } = require("./handleSignal.js");
 
@@ -12,16 +11,13 @@ const {
     AddArticle,
     getAllArticlesByName,
     updateArticle,
-    getAllArticles,
     getAllArticlesByTag,
 } = require("./database.js");
 
 const express = require("express");
-const axios = require("axios");
 const cors = require("cors");
 const cron = require("node-cron");
 const fs = require("fs");
-const { spawn } = require("child_process");
 const path = require("path");
 
 const WebSocket = require("ws");
@@ -29,8 +25,6 @@ const WebSocket = require("ws");
 const app = express();
 const PORT = 5000;
 const SOCKETPORT = 5001;
-
-const configFilePath = path.join(__dirname, "config.json");
 
 app.use(cors());
 app.use(express.json());

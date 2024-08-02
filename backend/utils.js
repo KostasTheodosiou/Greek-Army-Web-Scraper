@@ -18,16 +18,12 @@ const scrapeArticles = async (
         let articles = [];
 
         $(searchTerm).each((i, elem) => {
-            let title1 = $(elem).find("a").text() + " ";
+            let title1 = $(elem).find("a").text().trim();
             let title2 = $(elem).find("a").attr("title");
-            if (title2 == null) {
-                title2 = "";
-            } else {
-                title1 = "";
-            }
+            let title3 = $(elem).find("h3").text().trim();
             const link = prefix + decodeURI($(elem).find("a").attr("href"));
 
-            const title = title1 + title2;
+            const title = title1 || title2 || title3;
 
             //console.log(elem.html());
             let ancestorElem = $(elem).closest(ancestorTerm);

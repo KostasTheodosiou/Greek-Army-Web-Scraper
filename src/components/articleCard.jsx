@@ -3,27 +3,6 @@ import axios from "axios";
 import "./styles/articleCard.css";
 import CheckBox from "./CheckBox";
 
-const convertDateToGreek = (dateString) => {
-    if(dateString == null){
-        return "";
-    } 
-    const monthsGreek = [
-        "Ιανουαρίου", "Φεβρουαρίου", "Μαρτίου", "Απριλίου", "Μαΐου", "Ιουνίου",
-        "Ιουλίου", "Αυγούστου", "Σεπτεμβρίου", "Οκτωβρίου", "Νοεμβρίου", "Δεκεμβρίου"
-    ];
-
-    // Split the date and time parts
-    const [datePart, timePart] = dateString.split(" ");
-    const [year, month, day] = datePart.split("-");
-
-    // Convert the month to Greek
-    const monthGreek = monthsGreek[parseInt(month, 10) - 1];
-
-    // Return the formatted string
-    return `${day} ${monthGreek} ${year} ${timePart}`;
-};
-
-
 const ArticleCard = ({ article }) => {
     const [checked, setChecked] = useState(false);
     // const [isEditing, setIsEditing] = useState(false);
@@ -48,14 +27,11 @@ const ArticleCard = ({ article }) => {
     const sendArticle = async (article) => {
         //console.log(`Sending: ${article.title}`);
         try {
-            const response = await axios.get(
-                "/api/SendSignalMessage",
-                {
-                    params: {
-                        article: article,
-                    },
-                }
-            );
+            const response = await axios.get("/api/SendSignalMessage", {
+                params: {
+                    article: article,
+                },
+            });
             return response.data;
         } catch (error) {
             console.error("Error sending Article:", error);
@@ -66,7 +42,7 @@ const ArticleCard = ({ article }) => {
     const copyArticle = async (article) => {
         try {
             await navigator.clipboard.writeText(
-                article.title + "\n\n" + encodeURI(article.link)    
+                article.title + "\n\n" + encodeURI(article.link)
             );
             console.log("Text copied to clipboard");
         } catch (err) {
@@ -77,15 +53,12 @@ const ArticleCard = ({ article }) => {
     async function ToggleRead(articleID, articleTags) {
         try {
             console.log(articleID);
-            const response = await axios.post(
-                "/api/UpdateEntry",
-                {
-                    params: {
-                        id: articleID, // Axios automatically serializes the array
-                        updates: { tags: articleTags },
-                    },
-                }
-            );
+            const response = await axios.post("/api/UpdateEntry", {
+                params: {
+                    id: articleID, // Axios automatically serializes the array
+                    updates: { tags: articleTags },
+                },
+            });
             console.log(response);
         } catch (error) {
             console.error("Updating Article:", error);
@@ -123,7 +96,9 @@ const ArticleCard = ({ article }) => {
 
     return (
         <>
-            <div className="dateAdded">Βρέθηκε: {convertDateToGreek(article.dateAdded)}</div>
+            <div className="dateAdded">
+                Βρέθηκε: {article.dateAdded}
+            </div>
             <div className="date">{article.date}</div>
             <h3 className={!checked ? "article-title" : "inactive-title"}>
                 {article.title}

@@ -98,8 +98,8 @@
     {
         "name": "altgr",
         "url": "https://www.alt.gr/category/epikairotita/",
-        "ancestorTerm": ".entry-header",
-        "searchTerm": ".entry-title",
+        "ancestorTerm": ".post-loop-content",
+        "searchTerm": ".entry-header",
         "dateTerm": ".details",
         "linkprefix": ""
     }

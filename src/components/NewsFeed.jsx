@@ -7,7 +7,6 @@ import ArticleCard from "./articleCard";
 async function fetchArticles(url) {
     try {
         const response = await axios.get(url);
-        //console.log("GET request running");
         return response.data;
     } catch (error) {
         console.error("Error fetching articles:", error);
@@ -20,16 +19,12 @@ function NewsFeed() {
     const intervalRef = useRef(null);
 
     const fetchNewArticles = async () => {
-        //console.log("fetching articles At:", new Date().toLocaleTimeString());
-
         const data = await fetchArticles("/api/newArticles");
-        const revdata = data.reverse();
-        setEntries(revdata);
+        setEntries(data.reverse());
     };
 
     useEffect(() => {
         fetchNewArticles();
-
         intervalRef.current = setInterval(fetchNewArticles, 1000);
 
         return () => {

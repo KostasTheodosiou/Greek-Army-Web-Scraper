@@ -1,5 +1,5 @@
 // src/LinkSignalCli.js
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode.react";
 import "./styles/linksignalCli.css";
 
@@ -7,56 +7,57 @@ const LinkSignalCli = () => {
     const [qrCode, setQrCode] = useState(null);
     const [linking, setLinking] = useState(false);
     const [linked, setLinked] = useState(false);
-    const [started, setStarted] = useState(false);
-    const [DaemonStarted, setDaemonStarted] = useState(false);
+    const [daemonStarted, setDaemonStarted] = useState(false);
+    const [daemonStarting, setDaemonStarting] = useState(false);
+    const [daemonStopping, setDaemonStopping] = useState(false);
+    const socketRef = useRef(null);
 
-    const initiateStart = async () => {
-        setStarted(true);
-        try {
-            const response = await fetch("/api/start-signal-cli", {
-                method: "POST",
-            });
-            const data = await response.json();
-            console.log(data);
-            // if (data.hasStarted) {
-            //     setStarted(true);
-            // } else {
-            //     setStarted(false);
-            // }
-        } catch (error) {
-            console.error("Error initiating linking:", error);
-            setLinking(false);
+    useEffect(() => {
+        socketRef.current = new WebSocket("ws://localhost:5001");
+
+        socketRef.current.onopen = () => {
+            console.log("Connected to the server");
+        };
+
+        socketRef.current.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            handleSocketMessage(message);
+        };
+
+        socketRef.current.onclose = () => {
+            console.log("Disconnected from the server");
+        };
+
+        return () => {
+            socketRef.current.close();
+        };
+    }, []);
+
+    const handleSocketMessage = (message) => {
+        switch (message.type) {
+            case "qrCode":
+                setQrCode(message.data);
+                break;
+            case "AccountLinked":
+                console.log(message.data);
+                setLinked(true);
+                setQrCode(null);
+                break;
+            case "StartDaemon":
+                console.log("Starting Client");
+                setDaemonStarting(true);
+                break;
+            case "DaemonStarted":
+                setDaemonStarting(false);
+                setDaemonStarted(true);
+                break;
+            case "DaemonStopped":
+                setDaemonStarted(false);
+                setDaemonStopping(false);
+                break;
+            default:
+                console.log("Invalid operation");
         }
-    };
-
-    const socket = new WebSocket("ws://localhost:5001");
-
-    socket.onopen = () => {
-        console.log("Connected to the server");
-    };
-
-    socket.onmessage = (event) => {
-        const message = event.data;
-        console.log(message);
-
-        let parsedMessage = JSON.parse(message);
-
-        if (parsedMessage.type === "qrCode") {
-            setQrCode(parsedMessage.data);
-        } else if (parsedMessage.type === "CheckConnection") {
-            setLinked(true);
-        } else if (parsedMessage.type === "StartDaemon") {
-            setDaemonStarted(true);
-        } else if (parsedMessage.type === "response") {
-            if (parsedMessage.data.startsWith("Associated with:")) {
-            }
-        } else {
-            console.log("invalid operation");
-        }
-    };
-
-    socket.onclose = () => {
-        console.log("Disconnected from the server");
     };
 
     const initiateLinking = async () => {
@@ -66,65 +67,78 @@ const LinkSignalCli = () => {
                 type: "link",
                 data: {},
             };
-            socket.send(JSON.stringify(message));
+            socketRef.current.send(JSON.stringify(message));
         } catch (error) {
             console.error("Error initiating linking:", error);
             setLinking(false);
         }
     };
 
-    const CheckConnection = async () => {
+    const UnlinkSignalCli = async () => {
+        setLinked(false);
         try {
             const message = {
-                type: "CheckConnection",
+                type: "Unlink",
                 data: {},
             };
-            socket.send(JSON.stringify(message));
+            socketRef.current.send(JSON.stringify(message));
         } catch (error) {
-            console.error("Error Checking Connection:", error);
+            console.error("Error initiating linking:", error);
+            setLinking(false);
         }
     };
 
     const startDaemon = async () => {
         try {
+            setDaemonStarting(true);
             const message = {
                 type: "startDaemon",
                 data: {},
             };
-            socket.send(JSON.stringify(message));
+            socketRef.current.send(JSON.stringify(message));
         } catch (error) {
             console.error("Error Checking Connection:", error);
+            setDaemonStarting(false);
         }
     };
 
-    const sendSignalMessage = async () => {
+    const stopDaemon = async () => {
         try {
+            setDaemonStopping(true);
             const message = {
-                type: "SendSignalMessage",
+                type: "stopDaemon",
                 data: {},
             };
-            socket.send(JSON.stringify(message));
+            socketRef.current.send(JSON.stringify(message));
         } catch (error) {
             console.error("Error Checking Connection:", error);
+            setDaemonStopping(false);
         }
     };
 
     return (
         <div className="link-container">
             <div className="buttons">
-                <button onClick={initiateStart} disabled={linking}>
-                    {linking ? "Starting..." : "Start Signal-Bot"}
-                </button>
-                <button onClick={initiateLinking} disabled={linking}>
+                <button onClick={initiateLinking} disabled={linking || linked}>
                     {linking ? "Linking..." : "Link Signal-CLI"}
                 </button>
-                <button onClick={CheckConnection} disabled={linking}>
-                    {linked ? "Checking" : "Check"}
+                <button
+                    onClick={startDaemon}
+                    disabled={daemonStarting || daemonStarted}
+                >
+                    {daemonStarting || daemonStarted
+                        ? "Bot Started"
+                        : "Start Bot"}
                 </button>
-                <button onClick={startDaemon} disabled={DaemonStarted}>
-                    {DaemonStarted ? "Bot Started" : "Start Bot"}
+                <button
+                    onClick={stopDaemon}
+                    // disabled={daemonStopping || !daemonStarted}
+                >
+                    {daemonStopping || !daemonStarted
+                        ? "Bot Stopped"
+                        : "Stop Bot"}
                 </button>
-                <button onClick={sendSignalMessage}>Send Signal Message</button>
+                <button onClick={UnlinkSignalCli}>Unlink</button>
             </div>
             <div className="qr-code-container">
                 {qrCode && (
@@ -143,8 +157,14 @@ const LinkSignalCli = () => {
                 )}
             </div>
             <div>
-                {linked && <h3> LINKED </h3>}
-                {started && <h3> STARTED </h3>}
+                {linked && <h3> ACCOUNT LINKED </h3>}
+                {daemonStarting && <h3> SIGNAL CLIENT STARTING </h3>}
+                {daemonStarted && !daemonStarting && !daemonStopping ? (
+                    <h3> SIGNAL CLIENT STARTED </h3>
+                ) : (
+                    <h3> SIGNAL CLIENT STOPPED </h3>
+                )}
+                {daemonStopping && <h3> SIGNAL CLIENT STOPPING </h3>}
             </div>
         </div>
     );
