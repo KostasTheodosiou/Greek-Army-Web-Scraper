@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 <ul className="navbar-menu">
                     <li className="navbar-item">
-                        <Link to="/" className="navbar-link">
+                        <Link to="/BotConfigurator" className="navbar-link">
                             Ρυθμίσεις Signal
                         </Link>
                     </li>
@@ -30,7 +30,7 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to="/NewsFeed" className="navbar-link">
+                        <Link to="/" className="navbar-link">
                             Ροή Αρθρων
                         </Link>
                     </li>

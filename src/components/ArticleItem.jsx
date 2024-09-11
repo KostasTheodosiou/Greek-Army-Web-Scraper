@@ -1,8 +1,15 @@
 import React from "react";
 import "./styles/articleItem.css";
 import PropTypes from "prop-types";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset the copied state after 2 seconds
+    };
     if (!articles.length) {
         return <p>Δεν υπάρχουν Άρθρα.</p>;
     }
@@ -11,12 +18,12 @@ const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
         const currentArticles = articles.filter(article => article.tags.includes("Current"));
         const logArticles = articles.filter(article => article.tags.includes("Log"));
         currentArticles.sort((a, b) => b.id - a.id);
-        logArticles.sort((a, b) => a.id - b.id);    
+        logArticles.sort((a, b) => a.id - b.id);
         return [...currentArticles, ...logArticles];
     };
 
     const sortedArticles = sortArticles(articles);
-    
+
 
     return (
         <div className="articles-container">
@@ -26,7 +33,7 @@ const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
                     <h3 className="article-title">{article.title}</h3>
                     <a
                         className="article-link"
-                        href={encodeURI(article.link)}
+                        href={article.link}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -38,12 +45,11 @@ const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
                     >
                         Send
                     </button>
-                    <button
-                        className="copy-button"
-                        onClick={() => copyArticle(article)}
-                    >
+                    <CopyToClipboard text={article.title + "\n\n" + article.link} onCopy={handleCopy}>
+                    <button className="copy-button">
                         Copy
                     </button>
+                    </CopyToClipboard>
                 </div>
             ))}
         </div>

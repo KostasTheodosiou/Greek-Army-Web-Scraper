@@ -68,7 +68,7 @@ async function sendSignalMessage(message) {
 
 function startDaemon(socket) {
     const command =
-        ".\\backend\\signalBot\\signal-cli-0.13.5-SNAPSHOT\\bin\\signal-cli";
+        ".\\backend\\signal-cli-0.13.5\\bin\\signal-cli";
     console.log("Starting Client");
     try {
         childProcess = spawn(command, ["daemon", "--http", "localhost:7000"], {
@@ -153,7 +153,7 @@ function stopDaemon(socket) {
 
 function DeleteAccountData(socket) {
     const command =
-        ".\\backend\\signalBot\\signal-cli-0.13.5-SNAPSHOT\\bin\\signal-cli";
+        ".\\backend\\signal-cli-0.13.5\\bin\\signal-cli";
 
     try {
         const child = spawn(
@@ -212,7 +212,7 @@ function DeleteAccountData(socket) {
 
 function linkSignalCli(socket) {
     const command =
-        ".\\backend\\signalBot\\signal-cli-0.13.5-SNAPSHOT\\bin\\signal-cli";
+        ".\\backend\\signal-cli-0.13.5\\bin\\signal-cli";
 
     try {
         const child = spawn(command, ["link"], { shell: true });

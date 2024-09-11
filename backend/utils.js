@@ -8,26 +8,24 @@ const scrapeArticles = async (
     name,
     ancestorTerm,
     searchTerm,
-    dateTerm,
-    prefix
+	linkTerm,
+    dateTerm
 ) => {
     //return [{ title: " ", link: " " }];
     try {
-        const { data } = await axios.get(url);
+        const { request, data } = await axios.get(url);
+		const { protocol, host } = request;
+		const origin = `${protocol}//${host}`;
         const $ = cheerio.load(data);
-        let articles = [];
+        const articles = [];
 
         $(searchTerm).each((i, elem) => {
-            let title1 = $(elem).find("a").text().trim();
-            let title2 = $(elem).find("a").attr("title");
-            let title3 = $(elem).find("h3").text().trim();
-            const link = prefix + decodeURI($(elem).find("a").attr("href"));
-
-            const title = title1 || title2 || title3;
-
-            //console.log(elem.html());
-            let ancestorElem = $(elem).closest(ancestorTerm);
-            let date = $(ancestorElem).find(dateTerm).text().trim();
+            const title = $(elem).text().trim().replace(/\s+/g, " ");
+            const ancestorElem = $(elem).closest(ancestorTerm);
+            const href = $(ancestorElem).find(linkTerm).attr("href");
+            const date = $(ancestorElem).find(dateTerm).text().trim().replace(/\s+/g, " ");
+			
+			const link = new URL(href, origin).href;
 
             articles.push({ title, link, name, date });
         });

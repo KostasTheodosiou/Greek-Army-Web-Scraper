@@ -10,20 +10,21 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "axios": "^1.7.2",
-        "cheerio": "^1.0.0-rc.12",
+        "axios": "^1.7.7",
+        "cheerio": "^1.0.0",
         "child_process": "^1.0.2",
         "cors": "^2.8.5",
-        "electron-squirrel-startup": "^1.0.1",
-        "express": "^4.19.2",
+        "express": "^4.20.0",
         "fs": "^0.0.1-security",
         "moment-timezone": "^0.5.45",
         "node-cron": "^3.0.3",
+        "path": "^0.12.7",
         "qr-image": "^3.2.0",
         "qrcode": "^1.5.3",
         "qrcode.react": "^3.1.0",
         "react": "^18.3.1",
         "react-beautiful-dnd": "^13.1.1",
+        "react-copy-to-clipboard": "^5.1.0",
         "react-dom": "^18.3.1",
         "react-icon": "^1.0.0",
         "react-icons": "^5.2.1",
@@ -36,13 +37,9 @@
     },
     "scripts": {
         "start-react": "react-scripts --openssl-legacy-provider start",
-        "start": "electron-forge start",
         "build": "react-scripts --openssl-legacy-provider build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "electron": "electron .",
-        "package": "electron-forge package",
-        "make": "electron-forge make"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
@@ -61,17 +58,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "devDependencies": {
-        "@electron-forge/cli": "^7.4.0",
-        "@electron-forge/maker-deb": "^7.4.0",
-        "@electron-forge/maker-rpm": "^7.4.0",
-        "@electron-forge/maker-squirrel": "^7.4.0",
-        "@electron-forge/maker-zip": "^7.4.0",
-        "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
-        "@electron-forge/plugin-fuses": "^7.4.0",
-        "@electron/fuses": "^1.8.0",
-        "electron": "^31.3.1",
-        "electron-packager": "^17.1.2"
     }
 }

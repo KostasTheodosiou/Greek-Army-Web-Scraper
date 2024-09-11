@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/backend/signalBot
+/backend/signal-cli-0.13.5
 /backend/ArticlesLog
 /.pnp
 .pnp.js

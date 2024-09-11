@@ -22,15 +22,16 @@ const Articles = () => {
         "mod.mil",
         "Geetha",
         "kranosgr",
-        "spartakos",
         "armyvoice",
         "Militaire",
         "defencepoint",
         "onalert",
-        "enoplos",
-        "staratalogia",
-        "flight",
-        "altgr",
+		"Documento",
+		"DefenceReview",
+		"DirectusAmyna",
+		"DirectusDiethni",
+		"HellasJournal",
+		"DefenceNet"
     ];
 
     const [articles, setArticles] = useState({});

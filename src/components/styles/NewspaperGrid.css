@@ -1,0 +1,24 @@
+/* src/components/ImageGrid.css */
+.image-grid {
+    background-color: #252525;
+    margin-left: 250px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .image-item {
+    overflow: hidden;
+    padding: 5px;
+    border: 10px solid #252525; /* 10px thick border */
+  }
+  
+  .image-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Optional: rounded corners */
+    box-shadow: 0 4px 6px rgba(83, 83, 83, 0.1); /* Optional: add some shadow for better visuals */
+
+    object-fit: cover;
+  }
+  

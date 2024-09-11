@@ -30,8 +30,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "..", "build")));
+const imagePath = path.join(__dirname, 'NewsFronts');
+//console.log('Serving images from:', imagePath);
+app.use('/images', express.static(imagePath));
 
 const server = new WebSocket.Server({ port: SOCKETPORT });
+
+let cronJob = null;
 
 server.on("connection", (socket) => {
     console.log("Client connected");
@@ -51,7 +56,7 @@ server.on("connection", (socket) => {
     });
 });
 
-console.log(`WebSocket server is running on ws://localhost: ${SOCKETPORT}`);
+//console.log(`WebSocket server is running on ws://localhost: ${SOCKETPORT}`);
 
 app.get("/api/Articles", async (req, res) => {
     const name = req.query.names;
@@ -79,11 +84,23 @@ app.get("/api/sendSignalMessage", async (req, res) => {
 });
 
 app.get("/api/AddEntry", async (req, res) => {
-    const {title, link } = req.query;
-    const article = { title, link, name:"Other", date: ""};
+    const { title, link } = req.query;
+    const article = { title, link, name: "Other", date: "" };
     AddArticle(db, article, ["Current"]);
     res.json({ Added: true });
 });
+
+app.get('/api/images', (req, res) => {
+    fs.readdir(path.join(__dirname, 'NewsFronts'), (err, files) => {
+      if (err) {
+        res.status(500).send('Error reading image directory');
+        return;
+      }
+      // Filter out any non-image files if needed
+      res.json(files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file)));
+    });
+  });
+  
 
 app.post("/api/UpdateEntry", async (req, res) => {
     try {
@@ -114,13 +131,13 @@ const startUp = async () => {
             websites[i].name,
             websites[i].ancestorTerm,
             websites[i].searchTerm,
-            websites[i].dateTerm,
-            websites[i].linkprefix
+            websites[i].linkTerm,
+            websites[i].dateTerm
         );
         for (const j in articles) {
             try {
                 await AddArticle(db, articles[j], ["Log"]);
-            } catch {}
+            } catch { }
         }
     }
 };
@@ -134,24 +151,44 @@ const RefreshArticles = async () => {
             websites[i].name,
             websites[i].ancestorTerm,
             websites[i].searchTerm,
-            websites[i].dateTerm,
-            websites[i].linkprefix
+            websites[i].linkTerm,
+            websites[i].dateTerm
         );
         for (const j in articles) {
             try {
                 const result = await AddArticle(db, articles[j], ["Current"]);
-            } catch {}
+            } catch { }
         }
     }
 };
 
-cron.schedule("* * * * *", () => {
-    console.log("..");
-    RefreshArticles();
-});
+function startCronJob() {
+    if (cronJob) {
+        console.log("Cron job is already running.");
+        return;
+    }
 
-app.listen(PORT, async () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    // Define the cron job, e.g., to run every minute
+    cronJob = cron.schedule("*/2 * * * *", () => {
+        console.log("..");
+        RefreshArticles();
+    });
+}
 
-    startUp();
-});
+async function initializeServer() {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`Ο Server τρέχει στο port ${PORT}`);
+    });
+
+    try {
+        console.log("Αρχικοποίηση Βάσης");
+        await startUp(); // Wait for the startup task to complete
+        console.log("Αρχικοποίηση Ολοκληρώθηκε, Έναρξη περιοδικού Ελέγχου για νέα Άρθρα");
+        startCronJob(); // Start the cron job after task completion
+    } catch (error) {
+        console.error("Failed to complete startup task:", error);
+        process.exit(1); // Exit the process if the startup task fails
+    }
+}
+initializeServer();

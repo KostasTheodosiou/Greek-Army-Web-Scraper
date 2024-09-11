@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import MainApp from "./components/MainApp";
 import BotConfigurator from "./components/BotConfigurator";
 import ArticleCategoriser from "./components/ArticleCategoriser";
+import NewspaperGrid from "./components/NewspaperGrid";
 import "./App.css";
 import NewsFeed from "./components/NewsFeed";
 
@@ -13,13 +14,15 @@ function App() {
         <Router>
             <Navbar />
             <Routes>
-                <Route path="/" element={<BotConfigurator />} />
+                <Route path="/" element={<NewsFeed />} />
+                <Route path="/BotConfigurator" element={<BotConfigurator />} />
                 <Route path="/MainApp" element={<MainApp />} />
                 <Route
                     path="/ArticleCategoriser"
                     element={<ArticleCategoriser />}
                 />
-                <Route path="/NewsFeed" element={<NewsFeed />} />
+                <Route path="/NewsFronts" element={<NewspaperGrid />} />
+
             </Routes>
         </Router>
     );

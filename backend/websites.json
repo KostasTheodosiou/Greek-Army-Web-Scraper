@@ -2,105 +2,121 @@
     {
         "name": "Army.gr",
         "url": "http://army.gr/category/ekdiloseis",
-        "ancestorTerm": ".category-ekdiloseis",
-        "searchTerm": ".elementor-heading-title",
-        "dateTerm": ".elementor-post-info__item--type-date",
-        "linkprefix": ""
+        "ancestorTerm": ".post",
+        "searchTerm": "article .elementor-heading-title",
+        "linkTerm": ".elementor-heading-title>a",
+        "dateTerm": ".elementor-post-info"
+    },
+    {
+        "name": "Army.gr",
+        "url": "http://army.gr/category/anakoinoseis-typou",
+        "ancestorTerm": ".elementor-post__text",
+        "searchTerm": ".elementor-post__title",
+        "linkTerm": ".elementor-heading-title>a",
+        "dateTerm": ".elementor-post__meta-data"
     },
     {
         "name": "mod.mil",
         "url": "https://www.mod.mil.gr/category/anakoinoseis-typoy/",
         "ancestorTerm": ".elementor-post__text",
         "searchTerm": ".elementor-post__title",
-        "dateTerm": ".elementor-post-date",
-        "linkprefix": "https://www.mod.mil.gr"
+        "linkTerm": ".elementor-post__title>a",
+        "dateTerm": ".elementor-post-date"
     },
     {
         "name": "Geetha",
         "url": "https://geetha.mil.gr/category/drastiriotites/",
-        "ancestorTerm": ".td-module-meta-info",
-        "searchTerm": ".td-module-thumb",
-        "dateTerm": ".td-module-meta-info",
-        "linkprefix": ""
+        "ancestorTerm": ".td-meta-info-container",
+        "searchTerm": ".td-meta-info-container .entry-title",
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".entry-date"
     },
     {
         "name": "kranosgr",
         "url": "https://www.kranosgr.com/",
-        "ancestorTerm": ".td-module-meta-info",
-        "searchTerm": ".td-module-title",
-        "dateTerm": ".td-editor-date",
-        "linkprefix": ""
-    },
-    {
-        "name": "spartakos",
-        "url": "https://diktiospartakos.blogspot.com/",
-        "ancestorTerm": ".post-outer",
-        "searchTerm": ".post-title",
-        "dateTerm": ".timestamp-link",
-        "linkprefix": ""
+        "ancestorTerm": ".td-module-container",
+        "searchTerm": ".td_module_flex_5 .entry-title",
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".entry-date"
     },
     {
         "name": "armyvoice",
-        "url": "https://armyvoice.gr/",
-        "ancestorTerm": ".td_module_3",
-        "searchTerm": ".entry-title",
-        "dateTerm": ".td-post-date",
-        "linkprefix": ""
+        "url": "https://armyvoice.gr/category/roi/",
+        "ancestorTerm": ".td_module_wrap, .td-big-grid-post",
+        "searchTerm": ".entry-title:not(.td-page-title)",
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".entry-date"
     },
     {
         "name": "Militaire",
         "url": "https://www.militaire.gr/oles-oi-eidiseis/",
         "ancestorTerm": ".break-words",
-        "searchTerm": ".break-words",
-        "dateTerm": ".text-[13px]",
-        "linkprefix": ""
+        "searchTerm": "h3",
+        "linkTerm": "h3>a",
+        "dateTerm": ".text-\\[13px\\]"
     },
-    {
+	{
         "name": "defencepoint",
         "url": "https://www.defence-point.gr/news/",
-        "ancestorTerm": "",
+        "ancestorTerm": ".info, .title-area",
         "searchTerm": ".title",
-        "dateTerm": "",
-        "linkprefix": ""
+        "linkTerm": ".title>a, .title>h2>a",
+        "dateTerm": ".entry-date"
     },
     {
         "name": "onalert",
         "url": "https://www.onalert.gr/?s",
-        "ancestorTerm": "",
+        "ancestorTerm": "article",
         "searchTerm": ".jeg_post_title",
-        "dateTerm": "",
-        "linkprefix": ""
+        "linkTerm": ".jeg_post_title>a",
+        "dateTerm": ".jeg_meta_date"
     },
     {
-        "name": "enoplos",
-        "url": "https://www.enoplos.gr/search?max-results=15",
-        "ancestorTerm": "",
+        "name": "Documento",
+        "url": "https://www.documentonews.gr/arxiki-selida/roi-eidiseon/",
+        "ancestorTerm": ".meta-container",
         "searchTerm": ".entry-title",
-        "dateTerm": "",
-        "linkprefix": ""
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".date"
     },
     {
-        "name": "staratalogia",
-        "url": "https://www.staratalogia.gr/search?&max-results=5",
-        "ancestorTerm": ".post-info",
-        "searchTerm": ".post-title",
-        "dateTerm": ".post-date",
-        "linkprefix": ""
+        "name": "DefenceReview",
+        "url": "https://defencereview.gr/",
+        "ancestorTerm": "div",
+        "searchTerm": "h3:not([class])",
+        "linkTerm": "h3:not([class])>a",
+        "dateTerm": ".meta"
     },
     {
-        "name": "flight",
-        "url": "https://flight.com.gr/?s=",
-        "ancestorTerm": ".item-details",
-        "searchTerm": ".entry-title",
-        "dateTerm": ".entry-date",
-        "linkprefix": ""
+        "name": "DirectusAmyna",
+        "url": "https://directus.gr/category/amyna/",
+        "ancestorTerm": ".td-module-meta-info",
+        "searchTerm": ".tdb_module_loop .entry-title",
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".entry-date"
     },
     {
-        "name": "altgr",
-        "url": "https://www.alt.gr/category/epikairotita/",
-        "ancestorTerm": ".post-loop-content",
-        "searchTerm": ".entry-header",
-        "dateTerm": ".details",
-        "linkprefix": ""
+        "name": "DirectusDiethni",
+        "url": "https://directus.gr/category/diethni/",
+        "ancestorTerm": ".td-module-meta-info",
+        "searchTerm": ".tdb_module_loop .entry-title",
+        "linkTerm": ".entry-title>a",
+        "dateTerm": ".entry-date"
+    },
+    {
+        "name": "HellasJournal",
+        "url": "https://hellasjournal.com/oles-oi-eidiseis/",
+        "ancestorTerm": ".list-items",
+        "searchTerm": ".heading",
+        "linkTerm": ".heading>a",
+        "dateTerm": "time"
+    },
+    {
+        "name": "DefenceNet",
+        "url": "https://www.defencenet.gr/",
+        "ancestorTerm": "article, a",
+        "searchTerm": ".pfdiesel",
+        "linkTerm": "a",
+        "dateTerm": ".post-date"
     }
 ]
