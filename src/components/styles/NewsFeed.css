@@ -27,10 +27,13 @@
     flex-shrink: 0;
     text-align: start;
     padding-bottom: 45px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .feed-article-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
+    background-color: #071b2936;
+    color: white;
 }
 
 .ciclecheck {

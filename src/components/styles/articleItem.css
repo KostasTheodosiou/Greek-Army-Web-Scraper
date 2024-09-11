@@ -21,7 +21,7 @@
     background: #0b0b0b; /* Scrollbar track color */
 }
 
-.article-card {
+.b-article-card {
     position: relative;
     background-color: #1e1e1e;
     border: 1px solid #333;
@@ -36,25 +36,25 @@
     padding-bottom: 45px;
 }
 
-.article-card:hover {
+.b-article-card:hover {
     transform: scale(1.05);
 }
 
-.article-title {
+.b-article-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
     color: whitesmoke;
 }
 
-.article-link {
+.b-article-link {
     text-decoration: none;
     color: #66b2ff;
     overflow: scroll; /* Hide the overflowed text */
     text-overflow: clip; /* Show an ellipsis ('...') to indicate clipped text */
     word-wrap: break-word;
 }
-.article-link:hover {
+.b-article-link:hover {
     text-decoration: underline;
 }
 

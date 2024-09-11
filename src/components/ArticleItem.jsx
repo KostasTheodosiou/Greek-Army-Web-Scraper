@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import "./styles/articleItem.css";
 import PropTypes from "prop-types";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -28,11 +28,11 @@ const ArticleItem = ({ articles, sendArticle, copyArticle }) => {
     return (
         <div className="articles-container">
             {sortedArticles.map((article, index) => (
-                <div key={index} className="article-card">
+                <div key={index} className="b-article-card">
                     <h3 className="date">{article.date}</h3>
-                    <h3 className="article-title">{article.title}</h3>
+                    <h3 className="b-article-title">{article.title}</h3>
                     <a
-                        className="article-link"
+                        className="b-article-link"
                         href={article.link}
                         target="_blank"
                         rel="noopener noreferrer"
