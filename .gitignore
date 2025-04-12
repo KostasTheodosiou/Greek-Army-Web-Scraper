@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /backend/signal-cli-0.13.5
-/backend/ArticlesLog
+/backend/ArticlesLog/*
 /.pnp
 .pnp.js
 /out

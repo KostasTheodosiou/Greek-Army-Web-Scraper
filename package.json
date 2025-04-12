@@ -1,8 +1,8 @@
 {
-    "name": "denewsifier",
+    "name": "GreekArmyWebScraper",
     "version": "0.1.0",
     "author": "KostasTheodosiou",
-    "description": "Kalitero Feedly",
+    "description": "Web scraping App for real time web scraping of greek news outlets, built for the needs of the Greek Army general Staff. It uses Node.js as its' main runtime and express for the backend. The constant scraping is implemented with cron Jobs that periodicly grab the specified web pages. The saving of the data is achieved though the use of a mySQL database that resets daily. The user interracts with the app using a frontend utility that was designed using a REACT framework, in a way that allows multiple users on the same local network to work along side each other. The app supports integration with Signal Messaging API, so that updates from websites can be received imidiately on mobile apps through push notifications from the Signal Messaging App.",
     "private": true,
     "main": "index.js",
     "dependencies": {
@@ -10,11 +10,11 @@
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "axios": "^1.7.7",
+        "axios": "^1.8.4",
         "cheerio": "^1.0.0",
         "child_process": "^1.0.2",
         "cors": "^2.8.5",
-        "express": "^4.20.0",
+        "express": "^4.21.2",
         "fs": "^0.0.1-security",
         "moment-timezone": "^0.5.45",
         "node-cron": "^3.0.3",
@@ -33,7 +33,7 @@
         "react-scripts": "^5.0.1",
         "sqlite3": "^5.1.7",
         "web-vitals": "^2.1.4",
-        "ws": "^8.18.0"
+        "ws": "^8.18.1"
     },
     "scripts": {
         "start-react": "react-scripts --openssl-legacy-provider start",
